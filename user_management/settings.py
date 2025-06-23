@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UserConfig',
     'social_django',
+    'api',
+    'rest_framework',
+    
 ]
 
 MIDDLEWARE = [
@@ -120,6 +123,11 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+REST_FRAMEWORK ={
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.AllowAny', #need to secure later..
+    ]
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -139,9 +147,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 LOGIN_REDIRECT_URL = '/'
@@ -174,4 +182,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 from django.db import connection
 print("🎯 USING DB:", connection.settings_dict)
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
 

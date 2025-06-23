@@ -12,6 +12,7 @@ from users.forms import LoginForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
 
     path('', include('users.urls')),
 
